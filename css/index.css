@@ -331,7 +331,10 @@ main {
   border-bottom: #FAFAFA solid 2px;
   padding-left: 10px;
   background: #FAFAFA;
-  z-index: 300; }
+  z-index: 300; 
+  // 增加导航栏box-shadow
+  border-bottom: transparent solid 2px;
+  box-shadow: 0 2px 2px #eee;}
   @media screen and (max-width: 768px) {
     .site-header {
       background: #F5F5F5; } }
