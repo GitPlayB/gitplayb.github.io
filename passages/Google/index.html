@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Dong Yuanxin" />
+  
+  
+  <title>【译】Google搜索引擎原理 | Oliv&#39;s Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="翻译,Google,搜索引擎," />
+  
+
+  
+  <meta name="description" content="试着翻译一篇学术型的论文，学习一下搜索引擎的基本原理">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"Hyq9wkH495DgNHWhDQCOfQSp-gzGzoHsz","appkey":"WaR7nrzhliHj9aVwdQzkdlGd","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2018-07-10",
+    passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
+    is_post: true,
+    lock: false,
+    author: "Dong Yuanxin",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">OLIVER</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 陆离的光怪世界</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">文章归档</a>
+      
+        <a href="/tags/" target="_self">标签们</a>
+      
+        <a href="/categories/" target="_self">分类们</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/music/" target="_self">音乐吖</a>
+      
+        <a href="/about/" target="_self">关于本站</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/gitplayb/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            文章归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签们
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类们
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/music/" target="_self">
+            音乐吖
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于本站
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-05-23
+    </span>
+    
+      <span>
+        | <a href="/categories/翻译/"><i class="fa fa-bookmark"></i>翻译</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    【译】Google搜索引擎原理
+  </h1>
+  
+  <article class="passage-article">
+    <p></p>
+<h2 id="大规模超文本搜索引擎的分析"><a href="#大规模超文本搜索引擎的分析" class="headerlink" title="大规模超文本搜索引擎的分析"></a>大规模超文本搜索引擎的分析</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>本文中，我们介绍了<a href="https://www.google.com" target="_blank" rel="noopener">Google</a> ，一个大规模搜索引擎的原型，充分利用了网络中以超文本形式呈现的文档结构。Google的设计目标是能够更高效地爬取并索引网络上的内容，并且搜索结果比现有的系统更好（<em>satisfying</em>）。此搜索引擎原型可以在<a href="https://google.stanford.edu" target="_blank" rel="noopener">斯坦福大学官网</a>  找到（现在已经没有了），其中数据库包含至少2400万个网页的全部文本和链接。在工程上实现这样一个搜索引擎是一项艰巨的任务。搜索引擎需要为成千上万的网页建立索引，而每个页面都包含相当多的条目。搜索引擎每天需要对上千万的查询给出结果。尽管互联网上非常需要有这样大规模的搜索引擎，这方面的学术研究却少之又少。此外，由于技术的发展和网页数量的飞速增加，在今天构建一个网络搜索引擎已经远远不同于三年前了。这篇文章对我们的大型搜索引擎进行了一个深入的描述–是我们目前已知的最详细的描述。除了将传统的搜索技术应用到如此大规模的数据带来的困难外，还涉及到一些新的技术上的挑战，即如何使用超文本中附带的额外信息来产生更好的搜索结果。本文将阐述以下问题的解决方法：如何构建一个实用的、能够充分利用超文本中附加信息的大型系统。同时，我们也关注以下问题：如何高效地处理不可控的超文本内容（即任何人可以发布任何信息）的集合？</p>
+<p><strong>关键词</strong>：万维网；搜索引擎；信息检索；网页排名；Google</p>
+<h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h3><p>互联网给信息检索带来了新的挑战。网络上的信息呈爆炸式地增长，在网络研究领域没有经验的用户数量也是与日俱增。人们喜欢使用链接起来的一个个网站（<em>link graph</em>）来进行网上冲浪，通常从一些比较好的由人工维护的索引或者搜索引擎（如<a href="https://www.yahoo.com" target="_blank" rel="noopener">Yahoo！</a> ）开始。人工维护的网站列表清单能够很好的覆盖一些流行的主题，但是从另一方面来说其选定的内容也很主观，且很难构建和维护，想要改善速度也很慢，并且不能覆盖全部的（包括一些圈内人[esoteric]的）主题。使用关键字匹配的自动化搜索引擎的搜索结果的相关程度又不能让人满意。更糟糕的是，一些广告商为了吸引用户的注意，常常采取一些措施来误导自动化的搜索引擎。我们构建的大型搜索引擎解决了现存系统的这些问题。它充分利用了超文本文档结构的附加信息，以此来提供更加高质量的搜索结果。我们将系统命名为<strong>Google</strong>，因为它是一个天文数字，即10<sup>100</sup>的另一种写法，与我们构建<strong>大规模搜索引擎</strong>的想法一致。</p>
+<h4 id="1-1-网络搜索引擎-–-规模增长：1994-2000"><a href="#1-1-网络搜索引擎-–-规模增长：1994-2000" class="headerlink" title="1.1 网络搜索引擎 – 规模增长：1994-2000"></a>1.1 网络搜索引擎 – 规模增长：1994-2000</h4><p>搜索引擎技术不得不随着网络规模的增长而出现引人注目的增长。1994年，世界上最早的搜索引擎之一，World Wide Web Worm【参考<a href="http://info.cern.ch/" target="_blank" rel="noopener">WWW</a> 】，拥有110,000网络上可访问的文档和网页的索引。到了1997年的十一月，顶级的搜索引擎声称能够索引200万（WebCrawler）到1亿（Search Engine Watch）个网络文件不等。可以预见到2000年，互联网上一个复杂（搜索引擎）的索引将会包含超过10亿个文件。</p>
+<h4 id="1-2-Google：随着网络的增长而增长"><a href="#1-2-Google：随着网络的增长而增长" class="headerlink" title="1.2 Google：随着网络的增长而增长"></a>1.2 Google：随着网络的增长而增长</h4><h4 id="1-3-设计目标"><a href="#1-3-设计目标" class="headerlink" title="1.3 设计目标"></a>1.3 设计目标</h4><h5 id="1-3-1-改善搜索质量"><a href="#1-3-1-改善搜索质量" class="headerlink" title="1.3.1 改善搜索质量"></a>1.3.1 改善搜索质量</h5><h5 id="1-3-2-学术上搜索引擎的研究"><a href="#1-3-2-学术上搜索引擎的研究" class="headerlink" title="1.3.2 学术上搜索引擎的研究"></a>1.3.2 学术上搜索引擎的研究</h5><h3 id="2-系统特性"><a href="#2-系统特性" class="headerlink" title="2. 系统特性"></a>2. 系统特性</h3><h4 id="2-1-网页排名：给网络世界带来秩序"><a href="#2-1-网页排名：给网络世界带来秩序" class="headerlink" title="2.1 网页排名：给网络世界带来秩序"></a>2.1 网页排名：给网络世界带来秩序</h4><h5 id="2-1-1-网页排名算法描述"><a href="#2-1-1-网页排名算法描述" class="headerlink" title="2.1.1 网页排名算法描述"></a>2.1.1 网页排名算法描述</h5><h5 id="2-1-2-直观的论证"><a href="#2-1-2-直观的论证" class="headerlink" title="2.1.2 直观的论证"></a>2.1.2 直观的论证</h5><h4 id="2-2-定位文本"><a href="#2-2-定位文本" class="headerlink" title="2.2 定位文本"></a>2.2 定位文本</h4><h4 id="2-3-其它特性"><a href="#2-3-其它特性" class="headerlink" title="2.3 其它特性"></a>2.3 其它特性</h4><h3 id="3-相关工作"><a href="#3-相关工作" class="headerlink" title="3. 相关工作"></a>3. 相关工作</h3><h4 id="3-1-信息检索"><a href="#3-1-信息检索" class="headerlink" title="3.1 信息检索"></a>3.1 信息检索</h4><h4 id="3-2-网络和良好组织结构集合的区别"><a href="#3-2-网络和良好组织结构集合的区别" class="headerlink" title="3.2 网络和良好组织结构集合的区别"></a>3.2 网络和良好组织结构集合的区别</h4><h3 id="4-系统详细分析"><a href="#4-系统详细分析" class="headerlink" title="4. 系统详细分析"></a>4. 系统详细分析</h3><h4 id="4-1-Google架构概览"><a href="#4-1-Google架构概览" class="headerlink" title="4.1 Google架构概览"></a>4.1 Google架构概览</h4><h4 id="4-2-主要的数据结构"><a href="#4-2-主要的数据结构" class="headerlink" title="4.2 主要的数据结构"></a>4.2 主要的数据结构</h4><h5 id="4-2-1-大文件"><a href="#4-2-1-大文件" class="headerlink" title="4.2.1 大文件"></a>4.2.1 大文件</h5><h5 id="4-2-2-仓库"><a href="#4-2-2-仓库" class="headerlink" title="4.2.2 仓库"></a>4.2.2 仓库</h5><h5 id="4-2-3-文件索引"><a href="#4-2-3-文件索引" class="headerlink" title="4.2.3 文件索引"></a>4.2.3 文件索引</h5><h5 id="4-2-4-专门词汇-lexicon"><a href="#4-2-4-专门词汇-lexicon" class="headerlink" title="4.2.4 专门词汇[lexicon]"></a>4.2.4 专门词汇[<em>lexicon</em>]</h5><h5 id="4-2-5-点击次数列表"><a href="#4-2-5-点击次数列表" class="headerlink" title="4.2.5 点击次数列表"></a>4.2.5 点击次数列表</h5><h5 id="4-2-6-前向索引"><a href="#4-2-6-前向索引" class="headerlink" title="4.2.6 前向索引"></a>4.2.6 前向索引</h5><h5 id="4-2-7-反向索引"><a href="#4-2-7-反向索引" class="headerlink" title="4.2.7 反向索引"></a>4.2.7 反向索引</h5><h4 id="4-3-爬取网络数据"><a href="#4-3-爬取网络数据" class="headerlink" title="4.3 爬取网络数据"></a>4.3 爬取网络数据</h4><h4 id="4-4-为网页建立索引"><a href="#4-4-为网页建立索引" class="headerlink" title="4.4 为网页建立索引"></a>4.4 为网页建立索引</h4><h4 id="4-5-搜索"><a href="#4-5-搜索" class="headerlink" title="4.5 搜索"></a>4.5 搜索</h4><h5 id="4-5-1-排名系统"><a href="#4-5-1-排名系统" class="headerlink" title="4.5.1 排名系统"></a>4.5.1 排名系统</h5><h5 id="4-5-2-反馈"><a href="#4-5-2-反馈" class="headerlink" title="4.5.2 反馈"></a>4.5.2 反馈</h5><h3 id="5-结果和性能分析"><a href="#5-结果和性能分析" class="headerlink" title="5. 结果和性能分析"></a>5. 结果和性能分析</h3><h4 id="5-1-存储需求"><a href="#5-1-存储需求" class="headerlink" title="5.1 存储需求"></a>5.1 存储需求</h4><h4 id="5-2-系统性能分析"><a href="#5-2-系统性能分析" class="headerlink" title="5.2 系统性能分析"></a>5.2 系统性能分析</h4><h4 id="5-3-搜索性能分析"><a href="#5-3-搜索性能分析" class="headerlink" title="5.3 搜索性能分析"></a>5.3 搜索性能分析</h4><h3 id="6-结论"><a href="#6-结论" class="headerlink" title="6. 结论"></a>6. 结论</h3><h4 id="6-1-未来的工作"><a href="#6-1-未来的工作" class="headerlink" title="6.1 未来的工作"></a>6.1 未来的工作</h4><h4 id="6-2-高质量的搜索结果"><a href="#6-2-高质量的搜索结果" class="headerlink" title="6.2 高质量的搜索结果"></a>6.2 高质量的搜索结果</h4><h4 id="6-3-可扩展的系统架构"><a href="#6-3-可扩展的系统架构" class="headerlink" title="6.3 可扩展的系统架构"></a>6.3 可扩展的系统架构</h4><h4 id="6-4-用来研究的工具"><a href="#6-4-用来研究的工具" class="headerlink" title="6.4 用来研究的工具"></a>6.4 用来研究的工具</h4><h3 id="7-致谢"><a href="#7-致谢" class="headerlink" title="7. 致谢"></a>7. 致谢</h3><h3 id="8-附录A：广告和其它"><a href="#8-附录A：广告和其它" class="headerlink" title="8. 附录A：广告和其它"></a>8. 附录A：广告和其它</h3><h3 id="9-附录B：可扩展性"><a href="#9-附录B：可扩展性" class="headerlink" title="9. 附录B：可扩展性"></a>9. 附录B：可扩展性</h3><h4 id="9-1-Google的可扩展性"><a href="#9-1-Google的可扩展性" class="headerlink" title="9.1 Google的可扩展性"></a>9.1 Google的可扩展性</h4><h4 id="9-2-集中式索引结构的可扩展性"><a href="#9-2-集中式索引结构的可扩展性" class="headerlink" title="9.2 集中式索引结构的可扩展性"></a>9.2 集中式索引结构的可扩展性</h4>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#大规模超文本搜索引擎的分析"><span class="toc-text">大规模超文本搜索引擎的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#摘要"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-引言"><span class="toc-text">1. 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-网络搜索引擎-–-规模增长：1994-2000"><span class="toc-text">1.1 网络搜索引擎 – 规模增长：1994-2000</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-Google：随着网络的增长而增长"><span class="toc-text">1.2 Google：随着网络的增长而增长</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-设计目标"><span class="toc-text">1.3 设计目标</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-1-改善搜索质量"><span class="toc-text">1.3.1 改善搜索质量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-3-2-学术上搜索引擎的研究"><span class="toc-text">1.3.2 学术上搜索引擎的研究</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-系统特性"><span class="toc-text">2. 系统特性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-网页排名：给网络世界带来秩序"><span class="toc-text">2.1 网页排名：给网络世界带来秩序</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-1-网页排名算法描述"><span class="toc-text">2.1.1 网页排名算法描述</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-2-直观的论证"><span class="toc-text">2.1.2 直观的论证</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-定位文本"><span class="toc-text">2.2 定位文本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-其它特性"><span class="toc-text">2.3 其它特性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-相关工作"><span class="toc-text">3. 相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-信息检索"><span class="toc-text">3.1 信息检索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-网络和良好组织结构集合的区别"><span class="toc-text">3.2 网络和良好组织结构集合的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-系统详细分析"><span class="toc-text">4. 系统详细分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-1-Google架构概览"><span class="toc-text">4.1 Google架构概览</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-主要的数据结构"><span class="toc-text">4.2 主要的数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-1-大文件"><span class="toc-text">4.2.1 大文件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-2-仓库"><span class="toc-text">4.2.2 仓库</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-3-文件索引"><span class="toc-text">4.2.3 文件索引</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-4-专门词汇-lexicon"><span class="toc-text">4.2.4 专门词汇[lexicon]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-5-点击次数列表"><span class="toc-text">4.2.5 点击次数列表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-6-前向索引"><span class="toc-text">4.2.6 前向索引</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2-7-反向索引"><span class="toc-text">4.2.7 反向索引</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-3-爬取网络数据"><span class="toc-text">4.3 爬取网络数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-4-为网页建立索引"><span class="toc-text">4.4 为网页建立索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-搜索"><span class="toc-text">4.5 搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-5-1-排名系统"><span class="toc-text">4.5.1 排名系统</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-5-2-反馈"><span class="toc-text">4.5.2 反馈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-结果和性能分析"><span class="toc-text">5. 结果和性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#5-1-存储需求"><span class="toc-text">5.1 存储需求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-2-系统性能分析"><span class="toc-text">5.2 系统性能分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-3-搜索性能分析"><span class="toc-text">5.3 搜索性能分析</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-结论"><span class="toc-text">6. 结论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#6-1-未来的工作"><span class="toc-text">6.1 未来的工作</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-2-高质量的搜索结果"><span class="toc-text">6.2 高质量的搜索结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-3-可扩展的系统架构"><span class="toc-text">6.3 可扩展的系统架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-4-用来研究的工具"><span class="toc-text">6.4 用来研究的工具</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-致谢"><span class="toc-text">7. 致谢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-附录A：广告和其它"><span class="toc-text">8. 附录A：广告和其它</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-附录B：可扩展性"><span class="toc-text">9. 附录B：可扩展性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#9-1-Google的可扩展性"><span class="toc-text">9.1 Google的可扩展性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-2-集中式索引结构的可扩展性"><span class="toc-text">9.2 集中式索引结构的可扩展性</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: Oliverrrr</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://gitplayb.github.io/passages/Google/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/Google/"><i class="fa fa-tags"></i>Google</a>
+     
+      <a href="/tags/搜索引擎/"><i class="fa fa-tags"></i>搜索引擎</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="http://ruanyifeng.com/" target="_blank">阮一峰的个人网站</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://coolshell.cn/" target="_blank">酷壳</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">抓到我</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.zhihu.com/people/mr-bing-97-53/activities" target="_blank">知乎</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.v2ex.com/member/Oliverrrr" target="_blank">v2ex</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: olivb.sh@gmail.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/Thinking-in-Java/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>
