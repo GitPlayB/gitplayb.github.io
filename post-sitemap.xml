@@ -8,8 +8,40 @@
     </url>
 
     <url>
+        <loc>https://gitplayb.github.io/passages/%E9%82%A3%E5%B9%B4%E4%BB%8A%E6%97%A5/</loc>
+        <lastmod>2019-11-15T18:05:42.184Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/Git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/</loc>
+        <lastmod>2019-11-15T18:01:27.644Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://gitplayb.github.io/passages/Google/</loc>
-        <lastmod>2019-11-12T14:36:39.379Z</lastmod>
+        <lastmod>2019-11-15T16:01:37.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/Thinking-in-Java/</loc>
+        <lastmod>2019-11-15T16:01:19.443Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E7%AC%94%E8%AF%95%E9%A2%98/</loc>
+        <lastmod>2019-11-15T16:00:45.245Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -32,14 +64,6 @@
     </url>
 
     <url>
-        <loc>https://gitplayb.github.io/passages/Git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/</loc>
-        <lastmod>2019-11-12T14:28:33.966Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://gitplayb.github.io/passages/Graduation/</loc>
         <lastmod>2019-11-12T14:26:57.525Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -48,24 +72,8 @@
     </url>
 
     <url>
-        <loc>https://gitplayb.github.io/passages/Thinking-in-Java/</loc>
-        <lastmod>2019-11-12T14:24:00.695Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://gitplayb.github.io/passages/%E6%96%B0%E7%94%9F%E6%B4%BB%E4%BA%8C%E4%B8%89%E4%BA%8B/</loc>
         <lastmod>2019-11-12T14:22:14.594Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/passages/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E7%AC%94%E8%AF%95%E9%A2%98/</loc>
-        <lastmod>2019-11-12T14:20:01.900Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

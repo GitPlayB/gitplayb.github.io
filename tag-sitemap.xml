@@ -3,15 +3,36 @@
 
 
     <url>
-        <loc>https://gitplayb.github.io/tags/Google/</loc>
-        <lastmod>2019-11-12T14:36:39.379Z</lastmod>
+        <loc>https://gitplayb.github.io/tags/Git/</loc>
+        <lastmod>2019-11-15T18:01:27.644Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://gitplayb.github.io/tags/Git/</loc>
-        <lastmod>2019-11-12T14:28:33.966Z</lastmod>
+        <loc>https://gitplayb.github.io/tags/Google/</loc>
+        <lastmod>2019-11-15T16:01:37.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/tags/%E9%BB%84%E9%87%91%E5%B1%8B/</loc>
+        <lastmod>2019-11-15T16:01:19.443Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/tags/Java/</loc>
+        <lastmod>2019-11-15T16:01:19.443Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
+        <lastmod>2019-11-15T16:00:45.245Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -19,27 +40,6 @@
     <url>
         <loc>https://gitplayb.github.io/tags/%E5%A4%9A%E5%AA%92%E4%BD%93/</loc>
         <lastmod>2019-11-12T14:26:57.525Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/tags/%E9%BB%84%E9%87%91%E5%B1%8B/</loc>
-        <lastmod>2019-11-12T14:24:00.695Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/tags/Java/</loc>
-        <lastmod>2019-11-12T14:24:00.695Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
-        <lastmod>2019-11-12T14:20:01.900Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
