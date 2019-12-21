@@ -9,7 +9,7 @@
   
   <title>Git多账号配置</title>
   <meta name="author" content="Oliverrrr">
-  <meta name="description" content="单账号SSH/Git的原理Git使用HTTPS/SSH协议，如果使用https，则每次提交代码时需要输入用户名和密码；如果用ssh，则每次无需输入验证，由Git服务器进行验证。其中，公钥由Git服务器保存，自己本地保存的是私钥，验证时，服务器将公钥与你本地的私钥进行匹配。SSH是非对称加密的一个典型">
+  <meta name="description" content="有时候我们需要在一台电脑上配置多个Git账号（如公司一个、自己一个），道理还是一样，只是稍微麻烦一点。在这里记录一下操作过程。">
   
   
   <meta property="og:title" content="Git多账号配置"/>
@@ -86,12 +86,13 @@
     </div>
     <hr>
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单账号"><span class="toc-text">单账号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH-Git的原理"><span class="toc-text">SSH/Git的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#注意："><span class="toc-text">注意：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么"><span class="toc-text">为什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么做"><span class="toc-text">怎么做</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-分别生成公-私钥"><span class="toc-text">1. 分别生成公/私钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新建config"><span class="toc-text">2. 新建config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-将私钥添加到ssh-agent"><span class="toc-text">3. 将私钥添加到ssh-agent</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单账号"><span class="toc-text">单账号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SSH-Git的原理"><span class="toc-text">SSH/Git的原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#步骤"><span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#注意："><span class="toc-text">注意：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么"><span class="toc-text">为什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么做"><span class="toc-text">怎么做</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-分别生成公-私钥"><span class="toc-text">1. 分别生成公/私钥</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-新建config"><span class="toc-text">2. 新建config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-将私钥添加到ssh-agent"><span class="toc-text">3. 将私钥添加到ssh-agent</span></a></li></ol></li></ol>
     
     <div class="picture-container">
       
     </div>
-    <a id="more"></a>
+    <p>有时候我们需要在一台电脑上配置多个Git账号（如公司一个、自己一个），道理还是一样，只是稍微麻烦一点。在这里记录一下操作过程。</p>
+<a id="more"></a>
 <h2 id="单账号"><a href="#单账号" class="headerlink" title="单账号"></a>单账号</h2><h3 id="SSH-Git的原理"><a href="#SSH-Git的原理" class="headerlink" title="SSH/Git的原理"></a>SSH/Git的原理</h3><p>Git使用HTTPS/SSH协议，如果使用https，则每次提交代码时需要输入用户名和密码；如果用ssh，则每次无需输入验证，由Git服务器进行验证。其中，公钥由Git服务器保存，自己本地保存的是私钥，验证时，服务器将公钥与你本地的私钥进行匹配。SSH是非对称加密的一个典型例子。</p>
 <h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
 <li><p><strong>生成一对公/私钥</strong></p>
@@ -111,7 +112,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ Hi yourname! You<span class="string">'ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h6 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h6><p>安装过程中会提示你输入<strong>passphrase</strong>，即口令。正常情况下（为了方便）可以不用输入，直接回车；输入的话就是为了防止别人操作你的电脑，也可以登录你的Git。输入过程中字符是不显示的（类似于web表单页面输入密码），出于安全考虑。</p>
+<h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><p>安装过程中会提示你输入<strong>passphrase</strong>，即口令。正常情况下（为了方便）可以不用输入，直接回车；输入的话就是为了防止别人操作你的电脑，也可以登录你的Git。输入过程中字符是不显示的（类似于web表单页面输入密码），出于安全考虑。</p>
 <h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><p>来到公司后，由于公司这边用的是GitLab，于是配置了GitLab的SSH。配置了公钥和私钥后可以免密登录，很方便。但是，想要自己新建项目练习的时候发现，公司给的账号是<strong>LDAP账号</strong>，即<strong>域账号</strong>。由于域账号有权限的限制，所以自己什么也做不了，只能新建snippet（代码片段）。所以，想用GitHub来做项目练习。</p>
 <p>之前自己有一个GitHub账号，也在自己的电脑上配置了SSH秘钥，即自己电脑可以和GitHub的服务器连上，进行本地代码库的一些操作。于是想在公司电脑上也配置一下秘钥就行了。</p>
 <p>但是问题来了——</p>
@@ -145,6 +146,33 @@
   </div>
 
 
+    
+        <style>
+        .vcard .vimg{left:0;}
+        </style>
+        <div id="vcomment" class="vcomment" style="padding:0 6% 0 7%;"></div>
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '.vcomment',
+                notify: notify,
+                verify: verify,
+                appId: "",
+                appKey: "",
+                placeholder: "Just go go",
+                pageSize:'10',
+                avatar:'mm',
+                lang:'zh-cn'
+            })
+        </script>
     
 
 

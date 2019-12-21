@@ -91,7 +91,7 @@
     <div class="picture-container">
       
     </div>
-    <p><img src="/passages/Google/google-logo.png" alt="Google" title="Google"><br>试着翻译一篇学术型的<strong>论文</strong>，学习一下<strong>搜索引擎</strong>的基本原理。<br>原文在很多平台都有，被引量也是无出其右的了。题目：<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=8853f4da478a483cb1827d87b97ee30a&amp;site=xueshu_se" target="_blank" rel="noopener">The Anatomy of a Large-Scale Hypertextual Web Search Engine</a><br><a id="more"></a></p>
+    <p><img src="http://www.nonchaos.space/img/google-logo.png" alt="Google" title="Google"><br>试着翻译一篇学术型的<strong>论文</strong>，学习一下<strong>搜索引擎</strong>的基本原理。<br>原文在很多平台都有，被引量也是无出其右的了。题目：<a href="http://xueshu.baidu.com/usercenter/paper/show?paperid=8853f4da478a483cb1827d87b97ee30a&amp;site=xueshu_se" target="_blank" rel="noopener">The Anatomy of a Large-Scale Hypertextual Web Search Engine</a><br><a id="more"></a></p>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文中，我们介绍了<a href="https://www.google.com" target="_blank" rel="noopener">Google</a> ，一个大规模搜索引擎的原型，充分利用了网络中以超文本形式呈现的文档结构。Google的设计目标是能够更高效地爬取并索引网络上的内容，并且搜索结果比现有的系统更好（<em>satisfying</em>）。此搜索引擎原型可以在<a href="https://google.stanford.edu" target="_blank" rel="noopener">斯坦福大学官网</a>  找到（现在已经没有了），其中数据库包含至少2400万个网页的全部文本和链接。在工程上实现这样一个搜索引擎是一项艰巨的任务。搜索引擎需要为成千上万的网页建立索引，而每个页面都包含相当多的条目。搜索引擎每天需要对上千万的查询给出结果。尽管互联网上非常需要有这样大规模的搜索引擎，这方面的学术研究却少之又少。此外，由于技术的发展和网页数量的飞速增加，在今天构建一个网络搜索引擎已经远远不同于三年前了。这篇文章对我们的大型搜索引擎进行了一个深入的描述–是我们目前已知的最详细的描述。除了将传统的搜索技术应用到如此大规模的数据带来的困难外，还涉及到一些新的技术上的挑战，即如何使用超文本中附带的额外信息来产生更好的搜索结果。本文将阐述以下问题的解决方法：如何构建一个实用的、能够充分利用超文本中附加信息的大型系统。同时，我们也关注以下问题：如何高效地处理不可控的超文本内容（即任何人可以发布任何信息）的集合？</p>
 <p><strong>关键词</strong>：万维网；搜索引擎；信息检索；网页排名；Google</p>
 <h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><p>互联网给信息检索带来了新的挑战。网络上的信息呈爆炸式地增长，在网络研究领域没有经验的用户数量也是与日俱增。人们喜欢使用链接起来的一个个网站（<em>link graph</em>）来进行网上冲浪，通常从一些比较好的由人工维护的索引或者搜索引擎（如<a href="https://www.yahoo.com" target="_blank" rel="noopener">Yahoo！</a> ）开始。人工维护的网站列表清单能够很好的覆盖一些流行的主题，但是从另一方面来说其选定的内容也很主观，且很难构建和维护，想要改善速度也很慢，并且不能覆盖全部的（包括一些圈内人[esoteric]的）主题。使用关键字匹配的自动化搜索引擎的搜索结果的相关程度又不能让人满意。更糟糕的是，一些广告商为了吸引用户的注意，常常采取一些措施来误导自动化的搜索引擎。我们构建的大型搜索引擎解决了现存系统的这些问题。它充分利用了超文本文档结构的附加信息，以此来提供更加高质量的搜索结果。我们将系统命名为<strong>Google</strong>，因为它是一个天文数字，即10<sup>100</sup>的另一种写法，与我们构建<strong>大规模搜索引擎</strong>的想法一致。</p>
@@ -115,6 +115,33 @@
   </div>
 
 
+    
+        <style>
+        .vcard .vimg{left:0;}
+        </style>
+        <div id="vcomment" class="vcomment" style="padding:0 6% 0 7%;"></div>
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '.vcomment',
+                notify: notify,
+                verify: verify,
+                appId: "",
+                appKey: "",
+                placeholder: "Just go go",
+                pageSize:'10',
+                avatar:'mm',
+                lang:'zh-cn'
+            })
+        </script>
     
 
 
