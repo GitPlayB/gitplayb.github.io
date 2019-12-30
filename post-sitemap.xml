@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>https://gitplayb.github.io/passages/Dreamland/</loc>
+        <lastmod>2019-12-30T16:40:15.896Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/Hello/</loc>
+        <lastmod>2019-12-30T16:40:10.131Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/Let-s-play-some-music/</loc>
+        <lastmod>2019-12-30T16:37:46.692Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://gitplayb.github.io/passages/SPMIA/</loc>
         <lastmod>2019-12-22T15:20:55.219Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -50,22 +74,6 @@
     <url>
         <loc>https://gitplayb.github.io/passages/%E9%82%A3%E5%B9%B4%E4%BB%8A%E6%97%A5/</loc>
         <lastmod>2019-12-22T11:02:57.365Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/passages/Hello/</loc>
-        <lastmod>2019-12-22T09:27:05.736Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/passages/Dreamland/</loc>
-        <lastmod>2019-12-22T09:21:40.247Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
