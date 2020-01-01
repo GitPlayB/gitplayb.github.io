@@ -9,7 +9,7 @@
   
   <title>Let&#39;s play some music</title>
   <meta name="author" content="Oliverrrr">
-  <meta name="description" content="前两天在网上搜索安卓 合成器 qibrd等关键词时，搜到了一个叫做NSynth Super的一个东西，然后发现，这是一个硬件接口，就是使用NSynth算法能够生成很多奇奇怪怪的声音，相当于一个用了高级算法的合成器。由于我只是想找个软件试验一下，于是在GitHub上搜了一下，结果找到了Google C">
+  <meta name="description" content="前两天在网上搜索安卓 合成器 qibrd等关键词时，搜到了一个叫做NSynth Super的一个东西，然后发现，这是一个硬件接口，就是使用NSynth算法能够生成很多奇奇怪怪的声音，相当于一个用了高级算法的合成器。由于我只是想找个软件试验一下，于是在GitHub上搜了一下，结果找到了Google Creative Lab这个团队的一些有趣的项目（团队竟然只有8个人！），其中包括今天要介绍的主角–Chrome-music-lab，链接：GitHub | 官网。">
   
   
   <meta property="og:title" content="Let&#39;s play some music"/>
@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/m.min.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-</head>
+<link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"></script></head>
 
 <body>
   <a id="top"></a>
@@ -86,19 +86,19 @@
     </div>
     <hr>
     
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#这个可以用绘画来表示音符、鼓点和人声"><span class="toc-text">这个可以用绘画来表示音符、鼓点和人声</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#这是一家小妖怪👾在打鼓"><span class="toc-text">这是一家小妖怪👾在打鼓</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#用绘画🎨来创造音乐"><span class="toc-text">用绘画🎨来创造音乐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#我的小妖怪👾们在打鼓"><span class="toc-text">我的小妖怪👾们在打鼓</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个简单的DAW📟"><span class="toc-text">一个简单的DAW📟</span></a></li></ol>
     
     <div class="picture-container">
       
     </div>
     <p>前两天在网上搜索<em>安卓 合成器 qibrd</em>等关键词时，搜到了一个叫做<em>NSynth Super</em>的一个东西，然后发现，这是一个硬件接口，就是使用NSynth算法能够生成很多奇奇怪怪的声音，相当于一个用了高级算法的合成器。由于我只是想找个软件试验一下，于是在GitHub上搜了一下，结果找到了<a href="https://github.com/googlecreativelab" target="_blank" rel="noopener"><em>Google Creative Lab</em></a>这个团队的一些有趣的项目（团队竟然只有8个人！），其中包括今天要介绍的主角–<em>Chrome-music-lab</em>，链接：<a href="https://github.com/googlecreativelab/chrome-music-lab" target="_blank" rel="noopener">GitHub</a> | <a href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener">官网</a>。</p>
+<a id="more"></a>
 <p>这个项目据网站介绍说是主要用于教学目的，因为比较简单，所以不太可能拿来真正的做音乐；但是其可操作性和UI的美观程度，真的让人一玩就停不下来<del>啊哈哈哈</del>。</p>
-<h2 id="这个可以用绘画来表示音符、鼓点和人声"><a href="#这个可以用绘画来表示音符、鼓点和人声" class="headerlink" title="这个可以用绘画来表示音符、鼓点和人声"></a>这个可以用绘画来表示音符、鼓点和人声</h2><video src="chorus.mp4" type="video/mp4" controls="controls" width="100%" height="100%"><br></video>
-
+<h2 id="用绘画🎨来创造音乐"><a href="#用绘画🎨来创造音乐" class="headerlink" title="用绘画🎨来创造音乐"></a>用绘画🎨来创造音乐</h2><div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"loop":true,"screenshot":true,"video":{"url":"/passages/Let-s-play-some-music/chorus.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 <p>不过经过我多次尝试，发现好像最多只能画9个元素（可能是考虑到手机屏幕大小的原因）</p>
-<h2 id="这是一家小妖怪👾在打鼓"><a href="#这是一家小妖怪👾在打鼓" class="headerlink" title="这是一家小妖怪👾在打鼓"></a>这是一家小妖怪👾在打鼓</h2><video src="drums.mp4" type="video/mp4" controls="controls" width="100%" height="100%"><br></video>
-
-<p>总之，如果你想用音乐来<em>have some fun</em>，那么推荐赶紧去官网试试。不过我试了下，好像在电脑上打不开，可能只是为了手机用户设计的。</p>
+<h2 id="我的小妖怪👾们在打鼓"><a href="#我的小妖怪👾们在打鼓" class="headerlink" title="我的小妖怪👾们在打鼓"></a>我的小妖怪👾们在打鼓</h2><div id="dplayer2" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer2"),"loop":true,"screenshot":true,"video":{"url":"/passages/Let-s-play-some-music/drums.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<h2 id="一个简单的DAW📟"><a href="#一个简单的DAW📟" class="headerlink" title="一个简单的DAW📟"></a>一个简单的DAW📟</h2><div id="dplayer3" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer3"),"loop":true,"screenshot":true,"video":{"url":"/passages/Let-s-play-some-music/song.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+<p>总之，如果你想用音乐来<em>have some fun</em>，推荐赶紧去官网试试。不过我试了下，好像在电脑上打不开，可能只是为了手机用户设计的。</p>
 
 
   </article>

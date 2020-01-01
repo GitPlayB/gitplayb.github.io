@@ -9,14 +9,21 @@
 
     <url>
         <loc>https://gitplayb.github.io/categories/%E9%A3%98%F0%9F%91%BB/</loc>
-        <lastmod>2019-12-30T16:40:15.896Z</lastmod>
+        <lastmod>2020-01-01T15:44:23.808Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
         <loc>https://gitplayb.github.io/categories/%E6%BC%AB%E6%AD%A5%E8%80%85/</loc>
-        <lastmod>2019-12-30T16:37:46.692Z</lastmod>
+        <lastmod>2020-01-01T15:40:36.627Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/categories/%E8%AE%B0%E5%BD%95-Recording/</loc>
+        <lastmod>2020-01-01T15:21:12.835Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -38,13 +45,6 @@
     <url>
         <loc>https://gitplayb.github.io/categories/Thoughts%F0%9F%A4%94/</loc>
         <lastmod>2019-12-22T13:43:24.404Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/categories/%E8%AE%B0%E5%BD%95-Recording/</loc>
-        <lastmod>2019-12-22T11:02:57.365Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
