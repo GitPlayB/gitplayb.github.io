@@ -8,16 +8,24 @@
     </url>
 
     <url>
-        <loc>https://gitplayb.github.io/passages/Hello/</loc>
-        <lastmod>2020-01-01T15:44:23.808Z</lastmod>
+        <loc>https://gitplayb.github.io/passages/Let-s-play-some-music/</loc>
+        <lastmod>2020-01-01T16:00:10.432Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://gitplayb.github.io/passages/Let-s-play-some-music/</loc>
-        <lastmod>2020-01-01T15:40:36.627Z</lastmod>
+        <loc>https://gitplayb.github.io/passages/Hello/</loc>
+        <lastmod>2020-01-01T15:47:02.611Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/Dreamland/</loc>
+        <lastmod>2020-01-01T15:46:57.456Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -26,14 +34,6 @@
     <url>
         <loc>https://gitplayb.github.io/passages/Graduation/</loc>
         <lastmod>2020-01-01T15:21:12.835Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/passages/Dreamland/</loc>
-        <lastmod>2019-12-30T16:40:15.896Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
