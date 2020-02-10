@@ -3,6 +3,20 @@
 
 
     <url>
+        <loc>https://gitplayb.github.io/tags/%E7%BE%8E%E5%89%A7/</loc>
+        <lastmod>2020-02-10T15:10:11.145Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/tags/Google/</loc>
+        <lastmod>2020-02-10T14:48:05.529Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://gitplayb.github.io/tags/%E9%9F%B3%E4%B9%90/</loc>
         <lastmod>2020-01-01T16:00:10.432Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -40,13 +54,6 @@
     <url>
         <loc>https://gitplayb.github.io/tags/Git/</loc>
         <lastmod>2019-12-22T15:02:12.147Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/tags/Google/</loc>
-        <lastmod>2019-12-01T14:49:43.838Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
