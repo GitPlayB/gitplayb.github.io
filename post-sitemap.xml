@@ -9,7 +9,15 @@
 
     <url>
         <loc>https://gitplayb.github.io/passages/Meeting-electric-guitar/</loc>
-        <lastmod>2020-04-12T16:31:52.335Z</lastmod>
+        <lastmod>2020-04-19T16:52:21.942Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/%E5%90%8E%E7%AB%AF%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%8B%E7%BB%8D/</loc>
+        <lastmod>2020-04-19T16:51:28.075Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +25,7 @@
 
     <url>
         <loc>https://gitplayb.github.io/passages/Andy-Warhol/</loc>
-        <lastmod>2020-02-16T06:52:15.241Z</lastmod>
+        <lastmod>2020-04-19T16:19:54.347Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

@@ -7,13 +7,12 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="google-site-verification" content="" />
   
-  <title>梦幻岛</title>
+  <title>后端存储数据类型介绍</title>
   <meta name="author" content="Oliverrrr">
-  <meta name="description" content="每个人心中都有一座梦幻岛。
-希望有一天，你能带我到你家的小岛上去踏青。">
+  <meta name="description" content="我们在后台存储数据时，选择一种比较合适的数据类型往往会给后期工作带来很多便利。比如存储人名，可以使用CHAR或VARCHAR，这两者的区别顾名思义，就是VARCHAR是可变长的，而CHAR是固定长度的。换句话说，如果你给CHAR设置长度为4，那么每一个数据的长度就固定为4（至于具体是4个字节还是4个">
   
   
-  <meta property="og:title" content="梦幻岛"/>
+  <meta property="og:title" content="后端存储数据类型介绍"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:site_name" content="Oliv&#39;s Blog"/>
   <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
@@ -21,9 +20,6 @@
   <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/m.min.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
-<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
-<script src="\assets\js\Meting.min.js" class="meting-script-marker"></script>
 </head>
 
 <body>
@@ -47,7 +43,7 @@
       
   
     <h1 class="page-title center">
-        梦幻岛
+        后端存储数据类型介绍
     </h1>
   
 
@@ -55,12 +51,12 @@
     </div>
     <div class="meta center">
       
-<time datetime="2019-12-15T16:07:09.000Z">
+<time datetime="2020-04-19T16:17:47.000Z">
 <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
     <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
   </svg>
   &nbsp;
-  2019-12-16
+  2020-04-20
 </time>
 
 
@@ -72,7 +68,7 @@
       <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
     </svg>
     &nbsp;
-    <a href="/categories/飘/">飘</a>
+    <a href="/categories/BUG制造者/">BUG制造者</a>
 
 
 
@@ -84,7 +80,7 @@
       <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
     </svg>
     &nbsp;
-    <a href="/tags/音乐/">音乐</a>
+    <a href="/tags/数据库/">数据库</a>
 
 
     </div>
@@ -95,56 +91,13 @@
     <div class="picture-container">
       
     </div>
-    <blockquote>
-<p>每个人心中都有一座梦幻岛。</p>
-<p>希望有一天，你能带我到你家的小岛上去踏青。</p>
-</blockquote>
-<a id="more"></a>
-<p>分享一首歌，大学校园里走在长桥上听到第一秒就爱不释👂的一首歌。</p>
-<p>歌曲名叫<em>Island in the sun</em>，由美国独立摇滚乐队<a href="https://baike.baidu.com/item/weezer/3589565?fr=aladdin" target="_blank" rel="noopener">Weezer</a>演唱。</p>
-
-    <div id="aplayer-JKXgQFEf" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="20705824" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
-<p>歌词大意就是，我们可以在一个小岛上放空自己什么也不想，只有快乐在我们左右。</p>
-<blockquote>
-<p>When you’re on a holiday,</p>
-<p>You can’t find the words to say.</p>
-<p>All the things that come to you,</p>
-<p>And I wanna feel it too.</p>
-<p>On an island in the sun,</p>
-<p>We’ll be playing and having fun.</p>
-<p>And it makes me feel so fine</p>
-<p>I can’t control my brain</p>
-<hr>
-<p>When you’re on a golden sea,</p>
-<p>You don’t need no memory.</p>
-<p>Just a place to call your own,</p>
-<p>As we drift into the zone.</p>
-<p>On an island in the sun,</p>
-<p>We’ll be playing and having fun.</p>
-<p>And it makes me feel so fine</p>
-<p>I can’t control my brain</p>
-<hr>
-<p>We’ll run away together</p>
-<p>We’ll spend some time forever</p>
-<p>We’ll never feel bad anymore</p>
-<p>Hip hip</p>
-<p>Hip hip</p>
-<p>Hip hip</p>
-</blockquote>
-<p>简陋地翻译一下：</p>
-<blockquote>
-<p>当你在度假的时候，你什么话也不想说</p>
-<p>你经历的所有事情，我也想与你一起感受</p>
-<p>在一个阳光下的小岛上，我们将开心地玩乐</p>
-<p>这让我觉得如此美妙以至于无法控制我的大脑</p>
-<p>当你在金色的大海上，什么事情都不需要记起</p>
-<p>只需要找回真正的自己，在我们漂入大海的地方</p>
-<p>我们将一起逃离无论什么鬼地方</p>
-<p>我们将一起度过一段美好时光</p>
-<p>我们再也不会感到很糟糕</p>
-<p>嘿 嘿</p>
-<p>嘿 嘿</p>
-</blockquote>
+    <p>我们在后台存储数据时，选择一种比较合适的数据类型往往会给后期工作带来很多便利。比如存储人名，可以使用<code>CHAR</code>或<code>VARCHAR</code>，这两者的区别顾名思义，就是VARCHAR是可变长的，而CHAR是固定长度的。换句话说，如果你给CHAR设置长度为4，那么每一个数据的长度就固定为4（至于具体是4个字节还是4个字符，MySQL和PostgreSQL好像不太一样），如果不够4个字节（假设以字节为单位），就会补齐；如果设置VARCHAR为4，那么长度小于4时，数据存储在数据库的长度就是其实际长度。所以根据实际情况，如果想要存储上更省空间就用VARCHAR，如果想要每次存储时不需要额外的计算（VARCHAR由于长度不一，需要记录其实际长度）就用CHAR。</p>
+<p>数据库存储的基本类型包括数字型、字符型、日期类型以及长文本（<strong>text</strong>）类型。</p>
+<p>对于一些多媒体文件的存储类型，常见的做法是<strong>存储其URL路径</strong>，因为直接在数据库存储图片视频的做法想想就不可能！数据库的作用就是在我们需要查询数据时能够及时地取出，需要存储时能够比较快速地存入。如果查询一个视频类文件，需要从硬盘上加载几十分钟….想想就可怕。<br>因此，如果直接存储其URL，而它的实际内容可以在我们需要读取它时从服务器上读出来，这样就大大提高了性能，也比较符合我们的操作逻辑。</p>
+<p>还有一种常见的数据结构是，<strong>flag</strong>或者说开关。即，在表中需要存储其值是1或0，1代表有0代表无。如果只是某个字段还好，如delete_flag。但是如果有很多，而且是同一类型的，那不可能在数据表里设置这么多字段。比如，存储房间里的家具种类，像这样：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">"furniture": "&#123;\"bed\": 1,\"wardrobe\": 0,\"sofa\": 0,\"desksAndChairs\": 0,\"wifi\": 1,\"tv\": 0,\"airConditioner\": 1,\"washer\": 0,\"refrigerator\": 1,\"waterHeater\": 1,\"gasStoves\": 0,\"heating\": 1&#125;"</span><br></pre></td></tr></table></figure>
+<p>这里的做法就是直接将其整体作为一个JSON字符串存储，这样的好处是既节省了空间（只需要一个字符串类型的字段）又方便后台处理。在Java代码里处理它只需要将其以JSON方式解析即可（有很多可以利用的JSON解析库，如阿里的fastjson）。</p>
+<p>还有什么其它常见类型的存储方式，下次遇见了再追加吧。</p>
 
 
   </article>
