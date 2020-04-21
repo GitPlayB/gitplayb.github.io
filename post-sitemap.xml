@@ -8,8 +8,32 @@
     </url>
 
     <url>
-        <loc>https://gitplayb.github.io/passages/Meeting-electric-guitar/</loc>
-        <lastmod>2020-04-19T16:52:21.942Z</lastmod>
+        <loc>https://gitplayb.github.io/passages/Andy-Warhol/</loc>
+        <lastmod>2020-04-21T16:04:37.422Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/Reviews-on-Jean-Christophe/</loc>
+        <lastmod>2020-04-21T16:04:36.565Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/%E6%9C%88%E4%BA%AE%E4%B8%8E%E5%85%AD%E4%BE%BF%E5%A3%AB/</loc>
+        <lastmod>2020-04-21T16:04:35.435Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://gitplayb.github.io/passages/%E5%85%B3%E4%BA%8EAPI-Caller%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/</loc>
+        <lastmod>2020-04-21T16:01:49.919Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,15 +41,15 @@
 
     <url>
         <loc>https://gitplayb.github.io/passages/%E5%90%8E%E7%AB%AF%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%BB%8B%E7%BB%8D/</loc>
-        <lastmod>2020-04-19T16:51:28.075Z</lastmod>
+        <lastmod>2020-04-21T15:37:02.519Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://gitplayb.github.io/passages/Andy-Warhol/</loc>
-        <lastmod>2020-04-19T16:19:54.347Z</lastmod>
+        <loc>https://gitplayb.github.io/passages/Meeting-electric-guitar/</loc>
+        <lastmod>2020-04-19T16:52:21.942Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -104,14 +128,6 @@
     </url>
 
     <url>
-        <loc>https://gitplayb.github.io/passages/%E6%9C%88%E4%BA%AE%E4%B8%8E%E5%85%AD%E4%BE%BF%E5%A3%AB/</loc>
-        <lastmod>2019-12-22T13:43:24.404Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://gitplayb.github.io/passages/Desires/</loc>
         <lastmod>2019-12-22T11:04:23.415Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -130,14 +146,6 @@
     <url>
         <loc>https://gitplayb.github.io/passages/Git%E5%A4%9A%E8%B4%A6%E5%8F%B7%E9%85%8D%E7%BD%AE/</loc>
         <lastmod>2019-12-21T17:25:14.667Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://gitplayb.github.io/passages/Reviews-on-Jean-Christophe/</loc>
-        <lastmod>2019-12-01T14:50:57.652Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
