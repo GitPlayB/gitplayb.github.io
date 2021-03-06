@@ -1,0 +1,38 @@
+menu:
+  主页: /
+  归档: /archives
+
+logo: OLIV
+
+more:
+  友情链接: /links.html
+  Github: https://github.com/gitplayb/
+  知乎: https://www.zhihu.com/people/mr-bing-97-53/activities
+  rss: /rss2.xml
+  关于我: /about
+
+about:
+  title: Hello, Goodbye
+  link: http://nonchaos.space
+
+show_toc_bool: true
+
+# If you want to use valine,you should get the appId and appKey form https://leancloud.cn ,more setting please see https://valine.js.org
+valine:
+  enable: false # !!if you want use valine comment system,please set enable: true
+  appId: #your leancloud appId
+  appKey: #your leancloud appKey
+  guest_info: nick,mail,link #valine comment header info
+  placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
+  avatar: mm # gravatar style https://valine.js.org/avatar
+  pageSize: 10 # comment list page size
+  verify: false # valine verify code (true/false)
+  notify: false # valine mail notify (true/false)
+  lang: zh-cn
+
+
+excerpt_num: 120
+
+footer_info: © OLIV 2018-2020
+
+latex: true
