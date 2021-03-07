@@ -20,16 +20,16 @@ categories:
 ## 吉他
 
 ### Fender Telecaster
-![Fender Telecaster](Meeting-electric-guitar\Tele.jpg)
+![Fender Telecaster](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Meeting-electric-guitar/Tele.jpg)
 第一把是Fender的Telecaster，这把按理来说应该音色挺亮的，刚开始接的也是Fender的音箱，看起来还不错。切换了几种效果器，Tremelo、Fuzz还有失真什么的，感觉还不错吧。
 
 ### Epiphone Les Paul
-![Epiphone Les Paul](Meeting-electric-guitar\Epiphone.jpg)
+![Epiphone Les Paul](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Meeting-electric-guitar/Epiphone.jpg)
 Epiphone LP的音色较厚较温暖，相对Fender来说。
 就我目前所了解的，Epiphone是Gibson一个子品牌，Gibson的各种经典型号（ES-335、Les Paul）Epiphone也有，但可能是因为定位不同，也可能是收购的子品牌当然被压制的原因，Epiphone的琴和Gibson的琴相比还是差了挺多。但是作为一把初学者入门的固定琴桥的琴还是足够的。
 
 ### Fender Stratocaster
-![Fender Stratocaster](Meeting-electric-guitar\Strat.png)
+![Fender Stratocaster](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Meeting-electric-guitar/Strat.png)
 这是一把墨西哥产的吉他，俗称“墨芬”。因为上面两把我也没注意是什么“芬”，而且看价格上来说好像也没这么贵，而且老板看我弹了这个爱不释手的样子也一直在极力推荐这款，所以这把给我的感觉是最好的。
 其实我就是冲着Straocaster来的。因为看了一些测评视频觉得，Strat适合的演奏风格比Tele的风格更广泛一些，毕竟有5档拾音器调节。而且从设计上来说，Strat比Tele更现代更时尚一些。就美芬、日芬、墨芬来说，个人觉得墨芬还是不错的。美芬就很贵，当然音色上应该会更有芬味；日芬外形比较漂亮，价格比墨芬稍贵，音色具有现代感但是，看了一些视频发现音色偏绵软不够有芬味；墨芬是墨西哥产，但质量也还可以，价格也没有那么贵，音色的芬味也比较浓吧，至少我弹的时候就觉得（尤其是拾音器开到最后一档，音色最亮那档），非常funky而且有一种slap的感觉，很有冲击力；拾音器调到前面档位，音色也很温暖，试着弹了一下John Mayer的几首（*I'm gonna find another you*，*I don't trust myself(with loving you)*，*Slow dancing in a burning room*，*The heart of life*），真的是用软件调半天也很难调出这样的音色啊（可能是我不会）。
 这把Strat的音色试弹的适合真的惊艳到我了！作为一个没有弹过电吉他的新手，我在弹的过程中还是能感受到一些音色上的差别的。Epiphone就很暖，Tele偏亮吧，因为那把我好像没有弹...Strat可暖可亮，怪不得大家都这么喜欢它。

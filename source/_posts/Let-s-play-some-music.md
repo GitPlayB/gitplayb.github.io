@@ -16,7 +16,7 @@ categories:
 用绘画🎨来创造音乐
 ---
 
-{% dplayer "url=chorus.mp4" "loop=yes" "screenshot=yes" %}
+{% dplayer "url=https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Let-s-play-some-music/chorus.mp4" "loop=yes" "screenshot=yes" %}
 
 不过经过我多次尝试，发现好像最多只能画9个元素（可能是考虑到手机屏幕大小的原因）
 
@@ -24,11 +24,11 @@ categories:
 我的小妖怪👾们在打鼓
 ---
 
-{% dplayer "url=drums.mp4" "loop=yes" "screenshot=yes" %}
+{% dplayer "url=https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Let-s-play-some-music/drums.mp4" "loop=yes" "screenshot=yes" %}
 
 一个简单的DAW📟
 ---
 
-{% dplayer "url=song.mp4" "loop=yes" "screenshot=yes" %}
+{% dplayer "url=https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Let-s-play-some-music/song.mp4" "loop=yes" "screenshot=yes" %}
 
 总之，如果你想用音乐来*have some fun*，推荐赶紧去官网试试。不过我试了下，好像在电脑上打不开，可能只是为了手机用户设计的。

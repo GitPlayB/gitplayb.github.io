@@ -6,7 +6,7 @@ tags:
 categories:
   - 中文和英文
 ---
-![Google](Google/img/google-logo.png "Google")
+![Google](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Google/google-logo.png "Google")
 试着翻译一篇学术型的**论文**，学习一下**搜索引擎**的基本原理。  
 原文在很多平台都有，被引量也是无出其右的了。题目：[The Anatomy of a Large-Scale Hypertextual Web Search Engine](http://xueshu.baidu.com/usercenter/paper/show?paperid=8853f4da478a483cb1827d87b97ee30a&site=xueshu_se)  
 <!-- more -->

@@ -14,5 +14,5 @@ categories:
 
 ## 毕业视频
 
-{% dplayer "url=graduation.mp4" "api=https://api.prprpr.me/dplayer/" "loop=yes" %}
+{% dplayer "url=https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/graduation.mp4" "api=https://api.prprpr.me/dplayer/" "loop=yes" %}
 

@@ -14,7 +14,7 @@ date: 2018-09-28 23:40:00
 没想到，读过了第一章，便爱不释手。
 ***
 #### 附上主人公肖像
-![Jean Christophe](http://www.nonchaos.space/img/Christophe.png   "Jean Christophe")
+![Jean Christophe](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Reviews-on-Jean-Christophe/Christophe.png/Christophe.png   "Jean Christophe")
 
 #### 里面印象深刻的句子
 **《约翰·克利斯朵夫》** *（Jean Christophe)*    

@@ -756,7 +756,7 @@ Spring Cloud配置服务提供了一个**基于push的机制——Spring Cloud B
 
 
 
-![client-load-balance](SPMIA\client-load-balance.png)
+![client-load-balance](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/client-load-balance.png)
 
 
 
@@ -860,7 +860,7 @@ eureka:
 
 四个模式之间的配合如下图：
 
-![client-resiliency](SPMIA\client-resiliency.png)
+![client-resiliency](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/client-resiliency.png)
 
 
 
@@ -937,7 +937,7 @@ hystrix.exception.HystrixRuntimeException*，于是单独声明一下后者的�
 
 我们将看到两大类的Hystrix实现：**对数据库的调用**和**内部服务调用**。如图：
 
-![hystrix-two-cases](SPMIA\hystrix-two-cases.png)
+![hystrix-two-cases](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/hystrix-two-cases.png)
 
 两种类型调用中，Hystrix的使用是类似的。
 
@@ -970,7 +970,7 @@ private void sleep(){
 现在访问http://localhost:8082/v1/organizations/e254f8c-c442-4ebe-a82a-e2fc1d1ff78a/licenses/，多刷新几次，会发现出现了超时错误，这就说明我们的断路器起作用了，由于数据库操作超时导致抛出了*com.netflix.
 hystrix.exception.HystrixRuntimeException*异常。
 
-![HystrixRuntimeException](SPMIA\HystrixRuntimeException.png)
+![HystrixRuntimeException](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/HystrixRuntimeException.png)
 
 
 
@@ -1039,7 +1039,7 @@ private List<License> buildFallbackLicenseList(String organizationId) {
 
 现在，连续调用几次licensingservice服务，请求超时时会由fallback方法处理：
 
-![fallbackMethod](SPMIA\fallbackMethod.png)
+![fallbackMethod](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/fallbackMethod.png)
 
 
 
@@ -1425,7 +1425,7 @@ Zuul核心就是一个反向代理。反向代理就是一个中间的服务器�
 
 使用**/routes**端点可以查看由Zuul管理的路由：http://localhost:5555/routes。
 
-![zuul-routes](SPMIA\zuul-routes.png)
+![zuul-routes](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/zuul-routes.png)
 
 
 
@@ -1537,11 +1537,11 @@ Zuul允许你在Zuul网关内使用过滤器来构建自定义逻辑。Zuul支�
 - **后置过滤器**——在**目标服务被调用并将响应发送回客户端后被调用**。通常用来记录从目标服务返回的响应、处理错误或审核对敏感信息的响应。
 - **路由过滤器**——在**调用目标服务之前拦截调用**。**通常用来确定是否需要进行某些级别的动态路由**。例如，本章后面使用的路由级别的过滤器，将在同一服务的两个不同版本之间进行路由，以便将一小部分的服务调用路由到服务的新版本。这样就能在不让每个人都使用新服务的情况下，让少量的用户体验新功能。
 
-![3-layer-filter-principle](SPMIA\3-layer-filter-principle.png)
+![3-layer-filter-principle](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/3-layer-filter-principle.png)
 
 上图为三层过滤器的原理。、
 
-![3-layer-filter-application](SPMIA\3-layer-filter-application.png)
+![3-layer-filter-application](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/3-layer-filter-application.png)
 
 上图为结合应用的三层过滤器实现：
 
@@ -1586,7 +1586,7 @@ Zuul允许你在Zuul网关内使用过滤器来构建自定义逻辑。Zuul支�
 
 实现过程入下：
 
-![3-layer-filter](SPMIA\3-layer-filter.png)
+![3-layer-filter](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/3-layer-filter.png)
 
 以上过程发生了四件事：
 
@@ -1723,7 +1723,7 @@ OAuth2安全框架包含四个组件：
 
 工作流程如下：
 
-![oauth2-authentication](SPMIA\oauth2-authentication.png)
+![oauth2-authentication](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/SPMIA/oauth2-authentication.png)
 
 
 

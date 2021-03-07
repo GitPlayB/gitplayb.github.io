@@ -285,46 +285,46 @@ Andy关于“爱”的说法：
 
 自画像1
 
-![Andy_Warhol](Andy-Warhol\Andy_Warhol.jpg)
+![Andy_Warhol](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Andy-Warhol/Andy_Warhol.jpg)
 
 
 
 The Rolling Stones乐队主唱Mick Jagger
 
-![Mick Jagger](Andy-Warhol\1997-1-8b_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-475x472.jpg)
+![Mick Jagger](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Andy-Warhol/1997-1-8b_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-475x472.jpg)
 
 
 
 可口可乐
 
-![Coca-Cola](Andy-Warhol\1997-1-20_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-352x475.jpg)
+![Coca-Cola](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Andy-Warhol/1997-1-20_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-352x475.jpg)
 
 
 
 *Edie Sedgwick* 伊迪·塞奇威克--工厂里的女孩，他的书里也提到过
 
-![Edie Sedgwick](Andy-Warhol\1997-4-113-305_pub_01-PowerPoint-Ready-1000px-longest-edge-internal-use-only-475x350.jpg)
+![Edie Sedgwick](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Andy-Warhol/1997-4-113-305_pub_01-PowerPoint-Ready-1000px-longest-edge-internal-use-only-475x350.jpg)
 
 
 
 Andy、Nico和The Velvet Underground乐队的Lou Reed
 
-![The Velvet Underground](Andy-Warhol\1998-3-4563_pub_02-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-378x475.jpg)
+![The Velvet Underground](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Andy-Warhol/1998-3-4563_pub_02-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-378x475.jpg)
 
 
 
 坐着的裸体男子Torso
 
-![Seated Male Nude](Andy-Warhol\1998-1-1692_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-315x475.jpg)
+![Seated Male Nude](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Andy-Warhol/1998-1-1692_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-315x475.jpg)
 
 
 
 投麦高文（Vote McGovern）--关于投票选总统这里书中也有提到
 
-![Vote McGovern](Andy-Warhol\1998-1-2399_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-473x475.jpg)
+![Vote McGovern](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Andy-Warhol/1998-1-2399_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-473x475.jpg)
 
 
 
 自画像2
 
-![Self-Portrait](Andy-Warhol\1998-1-814_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-474x475.jpg)
+![Self-Portrait](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Andy-Warhol/1998-1-814_pub_01-Web-Ready-475px-longest-edge-Check-Copyright-Before-Using-on-Web-474x475.jpg)

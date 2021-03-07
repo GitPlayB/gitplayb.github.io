@@ -10,7 +10,7 @@ tags:
 **Thinking in Java**的读书笔记，记下来作为自己的参考
 <!-- more -->
 
-![目录](TIJ4\1576056340655.png)
+![目录](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/TIJ4/1576056340655.png)
 
 本书的目录如上。
 

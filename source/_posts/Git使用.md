@@ -54,25 +54,25 @@ categories:
 
 在git bash中操作一番发现，**已修改但是没有暂存时`M`出现在右边且是红色的；修改且暂存后`M`出现在左边且是绿色的**。如下：
 
-![git-status-s](Git使用\git-status-s.png)
+![git-status-s](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/git-status-s.png)
 
 显示还是挺人性化的，红色表示警告，暂存之后，就变成了绿色，表示正常状态。
 
 如果做了改变，又没有commit，就会出现下图的情况：
 
-![1573698024559](Git使用\1573698024559.png)
+![1573698024559](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/1573698024559.png)
 
 使用`git diff`查看具体区别：
 
-![1573697956849](Git使用\1573697956849.png)
+![1573697956849](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/1573697956849.png)
 
 使用`git add -A`将所有改动文件暂存：（详细版本会说“changes to be committed”，并且会以绿色字体列出改动的文件）
 
-![1573698564785](Git使用\1573698564785.png)
+![1573698564785](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/1573698564785.png)
 
 使用commit命令提交后，再看status
 
-![1573698789058](Git使用\1573698789058.png)
+![1573698789058](https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/1573698789058.png)
 
 提醒你要push代码，将改动同步到远程仓库
 
