@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>Git使用</title>
+  <meta name="author" content="Oliverrrr">
+  <meta name="description" content="Git使用1. 基础创建工作目录一般有两种方式：git init或者git clone url 
+前者会在当前选定目录下创建一个**.git**隐藏目录（Windows上需要把隐藏文件查看勾选上才可以看到），即本目录将会作为一个本地仓库可以与远程仓库连接。打开.git目录可以看到里面含有一些此仓库的">
+  
+  
+  <meta property="og:title" content="Git使用"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Oliv&#39;s Blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Oliv&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;陆离的光怪世界
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        Git使用
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2019-12-22T14:54:48.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2019/12/22
+</time>
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/categories/bug-maker/">BUG制造者</a>
+
+
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/tags/Git/">Git</a>·<a href="/tags/黄金屋/">黄金屋</a>
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git%E4%BD%BF%E7%94%A8"><span class="toc-text">Git使用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80"><span class="toc-text">1. 基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="toc-text">创建工作目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E4%BB%93%E5%BA%93%E4%B8%AD%E7%9A%84%E6%94%B9%E5%8F%98"><span class="toc-text">记录仓库中的改变</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B7%9F%E8%B8%AA-%E8%AE%B0%E5%BD%95%E6%96%87%E4%BB%B6"><span class="toc-text">跟踪&#x2F;记录文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text"></span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%8A%B6%E6%80%81%EF%BC%88%E7%AE%80%E7%89%88%EF%BC%89"><span class="toc-text">查看状态（简版）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6"><span class="toc-text">忽略文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%9A%82%E5%AD%98-%E6%9C%AA%E6%9A%82%E5%AD%98%E7%9A%84%E6%96%87%E4%BB%B6"><span class="toc-text">查看暂存&#x2F;未暂存的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4"><span class="toc-text">提交</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6"><span class="toc-text">删除文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E6%96%87%E4%BB%B6-%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">移动文件&#x2F;重命名</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2"><span class="toc-text">查看提交历史</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%96%E9%9B%AA%E5%B3%B0"><span class="toc-text">###############廖雪峰</span></a></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="Git使用"><a href="#Git使用" class="headerlink" title="Git使用"></a>Git使用</h1><h2 id="1-基础"><a href="#1-基础" class="headerlink" title="1. 基础"></a>1. 基础</h2><h3 id="创建工作目录"><a href="#创建工作目录" class="headerlink" title="创建工作目录"></a>创建工作目录</h3><p>一般有两种方式：<code>git init</code>或者<code>git clone url</code> </p>
+<p><strong>前者</strong>会在当前选定目录下创建一个**.git**隐藏目录（Windows上需要把隐藏文件查看勾选上才可以看到），即本目录将会作为一个本地仓库可以与远程仓库连接。打开.git目录可以看到里面含有一些此仓库的基本信息，主要是记录分支信息还有文件的更改情况等。</p>
+<p><strong>后者</strong>可以直接从远程仓库中复制一份完全一样的代码，到你的本地目录，作为本地仓库（前提是你配置好了Git客户端如GitHub的用户名/密码或者SSH秘钥）。</p>
+<h3 id="记录仓库中的改变"><a href="#记录仓库中的改变" class="headerlink" title="记录仓库中的改变"></a>记录仓库中的改变</h3><p><strong>版本控制系统</strong>最大的作用就是<strong>记录、跟踪文件的改变，使用户可以方便地在不同版本间切换</strong>。对于Git，基本状态有四个：<strong>Untracked、Unmodified、Modified、Staged</strong>。</p>
+<ul>
+<li><strong>Untracked</strong>——未被git加入跟踪，即文件怎么改变git都不管</li>
+<li><strong>Unmodified</strong>——已跟踪、未修改，git记录其改变情况，但现在还没有改变</li>
+<li><strong>Modified</strong>——已修改、未暂存，已经发生了改变，并且git记录了此改变</li>
+<li><strong>Staged</strong>——已暂存，已将改变情况告诉git，加入暂存区，作为下次commit（提交）的材料</li>
+</ul>
+<h4 id="跟踪-记录文件"><a href="#跟踪-记录文件" class="headerlink" title="跟踪/记录文件"></a>跟踪/记录文件</h4><p>当我们想让git为我们记录一个文件的改变时，使用<code>git add</code>命令，后面跟着的是想要跟踪的文件名。这时我们查看git状态（<code>git status</code>）会发现，状态已经由<strong>untracked</strong>变成了<strong>tracked</strong>，终端会显示<em>Changes to be committed</em>。即，我们已经到达提交前的一个状态：所有改变已被记录并暂存。如果提交之前又对加入跟踪的文件作了改变，还需要再次运行<code>git add</code>命令，将改变暂存，然后提交。</p>
+<p>由此可以看出，<code>git add</code>命令有两个作用：</p>
+<ol>
+<li>开始追踪/记录文件</li>
+<li>将文件（改变）提交到暂存区</li>
+</ol>
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="查看状态（简版）"><a href="#查看状态（简版）" class="headerlink" title="查看状态（简版）"></a>查看状态（简版）</h4><p>查看状态有两种方式：<code>git status</code>或者<code>git status -s</code>或者<code>git status --short</code>。</p>
+<p>前者查看较为详细的状态；后者查看简要状态。</p>
+<p>其中后者的状态表示有两列：<strong>第一列表示暂存区的状态；第二列表示远程仓库的状态。</strong><code>??</code>表示为追踪；<code>A</code>代表已暂存；<code>M</code>代表已修改。</p>
+<p>在git bash中操作一番发现，<strong>已修改但是没有暂存时<code>M</code>出现在右边且是红色的；修改且暂存后<code>M</code>出现在左边且是绿色的</strong>。如下：</p>
+<p><img src="https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/git-status-s.png" alt="git-status-s"></p>
+<p>显示还是挺人性化的，红色表示警告，暂存之后，就变成了绿色，表示正常状态。</p>
+<p>如果做了改变，又没有commit，就会出现下图的情况：</p>
+<p><img src="https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/1573698024559.png" alt="1573698024559"></p>
+<p>使用<code>git diff</code>查看具体区别：</p>
+<p><img src="https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/1573697956849.png" alt="1573697956849"></p>
+<p>使用<code>git add -A</code>将所有改动文件暂存：（详细版本会说“changes to be committed”，并且会以绿色字体列出改动的文件）</p>
+<p><img src="https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/1573698564785.png" alt="1573698564785"></p>
+<p>使用commit命令提交后，再看status</p>
+<p><img src="https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Git%E4%BD%BF%E7%94%A8/1573698789058.png" alt="1573698789058"></p>
+<p>提醒你要push代码，将改动同步到远程仓库</p>
+<p>使用<code>git status -s</code>则会什么都不显示</p>
+<h4 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h4><p>通常有一些文件，你是不想让git追踪的，即你怎么改变都是在本地改变的，不需要git干预（因为默认情况下git会把**.git<strong>所在目录下所有文件都当成潜在客户，即你没有add（追踪），它会缠着你让你追踪）。这时，我们就需要一个新建一个名为</strong>.gitignore**的隐藏文件，告诉git，哪些文件不需要追踪。</p>
+<p>文件的书写格式如下：</p>
+<ul>
+<li>空行或以**#**开头（注释）的行会被忽略</li>
+<li>支持部分<strong>正则表达式</strong></li>
+<li>开头加**/**避免递归</li>
+<li>末尾加**/**指定一个目录</li>
+<li>开头加**!**表示否定</li>
+</ul>
+<p>示例的.gitignore文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># ignore all .a files</span><br><span class="line">*.a</span><br><span class="line"># but do track lib.a, even though you&#39;re ignoring .a files above</span><br><span class="line">!lib.a</span><br><span class="line"># only ignore the TODO file in the current directory, not subdir&#x2F;TODO</span><br><span class="line">&#x2F;TODO</span><br><span class="line"># ignore all files in any directory named build</span><br><span class="line">build&#x2F;</span><br><span class="line"># ignore doc&#x2F;notes.txt, but not doc&#x2F;server&#x2F;arch.txt</span><br><span class="line">doc&#x2F;*.txt</span><br><span class="line"># ignore all .pdf files in the doc&#x2F; directory and any of its subdirectories</span><br><span class="line">doc&#x2F;**&#x2F;*.pdf</span><br></pre></td></tr></table></figure>
+<p>以上的描述已经很清楚了，主要就是通配符*****的使用。</p>
+<h4 id="查看暂存-未暂存的文件"><a href="#查看暂存-未暂存的文件" class="headerlink" title="查看暂存/未暂存的文件"></a>查看暂存/未暂存的文件</h4><p>使用<code>git diff</code>。</p>
+<p>如果改动了某个文件，使用diff可以查看<strong>已暂存/未暂存</strong>的文件，已暂存的文件下次commit将会被提交。</p>
+<p>使用diff时可以加上一个参数：<code>git diff --cached</code>或者<code>git status --staged</code>，没什么区别。</p>
+<p>还可以在其它外部工具（不是terminal）中使用git diff，使用<code>git difftool --tool-help</code>查看本机可以用的比较工具。</p>
+<h4 id="提交"><a href="#提交" class="headerlink" title="提交"></a>提交</h4><p>使用<code>git commit</code>。</p>
+<p>输入此命令会自动打开git bash配置的默认编辑器（未设置是vim），你可以写上本次提交的描述；</p>
+<p>或者，直接<code>git commit -m &quot;message&quot;</code>加上描述；</p>
+<p>如果不想每次commit前都要暂存（使用<code>git add</code>），可以在提交时加上**-a**参数，即<code>git commit -a</code>。</p>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><p>在git上删除一个文件，你得首先让git不要再追踪（track）它，然后提交。使用<code>git rm</code>就可以做到，并且也会将它从电脑磁盘上删除。如果直接使用<strong>rm</strong>，会提示：changes not staged for commit</p>
+<p>使用<code>git rm</code>，按下回车会反馈：删除了哪个文件。再查看status，会记录之前的操作–删除文件，并等待提交：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git rm PROJECTS.md</span><br><span class="line">rm <span class="string">&#x27;PROJECTS.md&#x27;</span></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with <span class="string">&#x27;origin/master&#x27;</span>.</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line">  </span><br><span class="line">    deleted: PROJECTS.md</span><br></pre></td></tr></table></figure>
+<p>删除以后，下次提交git就不会管它了。如果已经修改了这个文件或者已经把它add到了暂存区，删除时要使用**- f**强制删除，这是为了防止意外删除，因为删除了无法恢复。</p>
+<p>还有一种情况，你只想把文件从暂存区删除，但是保留在你的电脑磁盘上。这就好比你忘了在.gitignore中忽略这个文件。删除时添加**–cached**参数，即：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm --cached README</span><br></pre></td></tr></table></figure>
+<p>在命令中也可以使用通配符*，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm <span class="built_in">log</span>/\*.<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>上面命令将删除所有log/目录下的.log文件（好像是遇到*需要处理成转义字符）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rm \*~</span><br></pre></td></tr></table></figure>
+<p>上面命令会删除所有以~结尾的文件</p>
+<h4 id="移动文件-重命名"><a href="#移动文件-重命名" class="headerlink" title="移动文件/重命名"></a>移动文件/重命名</h4><p>不像其他的VCS（版本控制）系统，Git不会显式地追踪移动操作，即你在磁盘目录上对文件移动不会被记录到git的状态中。【但是！】Git提供了mv命令，如果使用mv命令进行移动，则会被记录在status中。如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git mv README.md README</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with <span class="string">&#x27;origin/master&#x27;</span>.</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line">  </span><br><span class="line">    renamed: README.md -&gt; README</span><br></pre></td></tr></table></figure>
+<p>重命名操作被Git记录了下来，此操作相当于以下的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mv README.md README</span><br><span class="line">$ git rm README.md</span><br><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
+<p>即，如果仅仅是在磁盘上对文件进行移动，完了还要告诉Git，将暂存区的旧文件移除，新文件暂存。</p>
+<p>这样看来，使用Git提供的移动/重命名操作，还是很方便的（<strong>或者直接在文件夹里修改名字就好了，Git不会记录</strong>）。</p>
+<h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p>使用<code>git log</code>命令查看提交历史记录。</p>
+<h1 id="廖雪峰"><a href="#廖雪峰" class="headerlink" title="###############廖雪峰"></a>###############廖雪峰</h1><p><strong>git撤销回退版本和切换分支的命令都可以是<code>git checkout</code>**，但切换分支还可以用</strong><code>git switch</code>**，所以最好用switch切换分支以区分。</p>
+<p><strong>git合并时默认使用fast forward模式</strong></p>
+
+
+  </article>
+  </script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © OLIV 2018-2021
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="http://nonchaos.space">
+        Hello, Goodbye
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>

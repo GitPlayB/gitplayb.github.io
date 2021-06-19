@@ -1,0 +1,171 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="" />
+  
+  <title>【译】Google搜索引擎原理</title>
+  <meta name="author" content="Oliverrrr">
+  <meta name="description" content="试着翻译一篇学术型的论文，学习一下搜索引擎的基本原理。原文在很多平台都有，被引量也是无出其右的了。题目：The Anatomy of a Large-Scale Hypertextual Web Search Engine">
+  
+  
+  <meta property="og:title" content="【译】Google搜索引擎原理"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Oliv&#39;s Blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Oliv&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  <div class="description">
+    &nbsp;陆离的光怪世界
+  </div>
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        【译】Google搜索引擎原理
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2019-05-22T17:22:57.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2019/05/23
+</time>
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/categories/chinese-and-english/">中文和英文</a>
+
+
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/tags/Google/">Google</a>
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%91%98%E8%A6%81"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%BC%95%E8%A8%80"><span class="toc-text">1. 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E7%BD%91%E7%BB%9C%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E-%E2%80%93-%E8%A7%84%E6%A8%A1%E5%A2%9E%E9%95%BF%EF%BC%9A1994-2000"><span class="toc-text">1.1 网络搜索引擎 – 规模增长：1994-2000</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Google%EF%BC%9A%E9%9A%8F%E7%9D%80%E7%BD%91%E7%BB%9C%E7%9A%84%E5%A2%9E%E9%95%BF%E8%80%8C%E5%A2%9E%E9%95%BF"><span class="toc-text">1.2 Google：随着网络的增长而增长</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E8%AE%BE%E8%AE%A1%E7%9B%AE%E6%A0%87"><span class="toc-text">1.3 设计目标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-1-%E6%94%B9%E5%96%84%E6%90%9C%E7%B4%A2%E8%B4%A8%E9%87%8F"><span class="toc-text">1.3.1 改善搜索质量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3-2-%E5%AD%A6%E6%9C%AF%E4%B8%8A%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="toc-text">1.3.2 学术上搜索引擎的研究</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%B3%BB%E7%BB%9F%E7%89%B9%E6%80%A7"><span class="toc-text">2. 系统特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E7%BD%91%E9%A1%B5%E6%8E%92%E5%90%8D%EF%BC%9A%E7%BB%99%E7%BD%91%E7%BB%9C%E4%B8%96%E7%95%8C%E5%B8%A6%E6%9D%A5%E7%A7%A9%E5%BA%8F"><span class="toc-text">2.1 网页排名：给网络世界带来秩序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-%E7%BD%91%E9%A1%B5%E6%8E%92%E5%90%8D%E7%AE%97%E6%B3%95%E6%8F%8F%E8%BF%B0"><span class="toc-text">2.1.1 网页排名算法描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-%E7%9B%B4%E8%A7%82%E7%9A%84%E8%AE%BA%E8%AF%81"><span class="toc-text">2.1.2 直观的论证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%AE%9A%E4%BD%8D%E6%96%87%E6%9C%AC"><span class="toc-text">2.2 定位文本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%85%B6%E5%AE%83%E7%89%B9%E6%80%A7"><span class="toc-text">2.3 其它特性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-text">3. 相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2"><span class="toc-text">3.1 信息检索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%BD%91%E7%BB%9C%E5%92%8C%E8%89%AF%E5%A5%BD%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84%E9%9B%86%E5%90%88%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">3.2 网络和良好组织结构集合的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%B3%BB%E7%BB%9F%E8%AF%A6%E7%BB%86%E5%88%86%E6%9E%90"><span class="toc-text">4. 系统详细分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Google%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88"><span class="toc-text">4.1 Google架构概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%B8%BB%E8%A6%81%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-text">4.2 主要的数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-1-%E5%A4%A7%E6%96%87%E4%BB%B6"><span class="toc-text">4.2.1 大文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-2-%E4%BB%93%E5%BA%93"><span class="toc-text">4.2.2 仓库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-3-%E6%96%87%E4%BB%B6%E7%B4%A2%E5%BC%95"><span class="toc-text">4.2.3 文件索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-4-%E4%B8%93%E9%97%A8%E8%AF%8D%E6%B1%87-lexicon"><span class="toc-text">4.2.4 专门词汇[lexicon]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-5-%E7%82%B9%E5%87%BB%E6%AC%A1%E6%95%B0%E5%88%97%E8%A1%A8"><span class="toc-text">4.2.5 点击次数列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-6-%E5%89%8D%E5%90%91%E7%B4%A2%E5%BC%95"><span class="toc-text">4.2.6 前向索引</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-7-%E5%8F%8D%E5%90%91%E7%B4%A2%E5%BC%95"><span class="toc-text">4.2.7 反向索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E7%88%AC%E5%8F%96%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE"><span class="toc-text">4.3 爬取网络数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E4%B8%BA%E7%BD%91%E9%A1%B5%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95"><span class="toc-text">4.4 为网页建立索引</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-5-%E6%90%9C%E7%B4%A2"><span class="toc-text">4.5 搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-1-%E6%8E%92%E5%90%8D%E7%B3%BB%E7%BB%9F"><span class="toc-text">4.5.1 排名系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-5-2-%E5%8F%8D%E9%A6%88"><span class="toc-text">4.5.2 反馈</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%BB%93%E6%9E%9C%E5%92%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">5. 结果和性能分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%AD%98%E5%82%A8%E9%9C%80%E6%B1%82"><span class="toc-text">5.1 存储需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">5.2 系统性能分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E6%90%9C%E7%B4%A2%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-text">5.3 搜索性能分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%BB%93%E8%AE%BA"><span class="toc-text">6. 结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%9C%AA%E6%9D%A5%E7%9A%84%E5%B7%A5%E4%BD%9C"><span class="toc-text">6.1 未来的工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9A%84%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C"><span class="toc-text">6.2 高质量的搜索结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%8F%AF%E6%89%A9%E5%B1%95%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="toc-text">6.3 可扩展的系统架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E7%94%A8%E6%9D%A5%E7%A0%94%E7%A9%B6%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-text">6.4 用来研究的工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%87%B4%E8%B0%A2"><span class="toc-text">7. 致谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E9%99%84%E5%BD%95A%EF%BC%9A%E5%B9%BF%E5%91%8A%E5%92%8C%E5%85%B6%E5%AE%83"><span class="toc-text">8. 附录A：广告和其它</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E9%99%84%E5%BD%95B%EF%BC%9A%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">9. 附录B：可扩展性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-Google%E7%9A%84%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">9.1 Google的可扩展性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-%E9%9B%86%E4%B8%AD%E5%BC%8F%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84%E7%9A%84%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7"><span class="toc-text">9.2 集中式索引结构的可扩展性</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <p><img src="https://hexo-blog-oliv.oss-cn-beijing.aliyuncs.com/202103/Google/google-logo.png" alt="Google" title="Google"><br>试着翻译一篇学术型的<strong>论文</strong>，学习一下<strong>搜索引擎</strong>的基本原理。<br>原文在很多平台都有，被引量也是无出其右的了。题目：<a target="_blank" rel="noopener" href="http://xueshu.baidu.com/usercenter/paper/show?paperid=8853f4da478a483cb1827d87b97ee30a&site=xueshu_se">The Anatomy of a Large-Scale Hypertextual Web Search Engine</a>  </p>
+<a id="more"></a>
+
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文中，我们介绍了<a target="_blank" rel="noopener" href="https://www.google.com/">Google</a> ，一个大规模搜索引擎的原型，充分利用了网络中以超文本形式呈现的文档结构。Google的设计目标是能够更高效地爬取并索引网络上的内容，并且搜索结果比现有的系统更好（<em>satisfying</em>）。此搜索引擎原型可以在<a target="_blank" rel="noopener" href="https://google.stanford.edu/">斯坦福大学官网</a>  找到（现在已经没有了），其中数据库包含至少2400万个网页的全部文本和链接。在工程上实现这样一个搜索引擎是一项艰巨的任务。搜索引擎需要为成千上万的网页建立索引，而每个页面都包含相当多的条目。搜索引擎每天需要对上千万的查询给出结果。尽管互联网上非常需要有这样大规模的搜索引擎，这方面的学术研究却少之又少。此外，由于技术的发展和网页数量的飞速增加，在今天构建一个网络搜索引擎已经远远不同于三年前了。这篇文章对我们的大型搜索引擎进行了一个深入的描述–是我们目前已知的最详细的描述。除了将传统的搜索技术应用到如此大规模的数据带来的困难外，还涉及到一些新的技术上的挑战，即如何使用超文本中附带的额外信息来产生更好的搜索结果。本文将阐述以下问题的解决方法：如何构建一个实用的、能够充分利用超文本中附加信息的大型系统。同时，我们也关注以下问题：如何高效地处理不可控的超文本内容（即任何人可以发布任何信息）的集合？</p>
+<p><strong>关键词</strong>：万维网；搜索引擎；信息检索；网页排名；Google</p>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h2><p>互联网给信息检索带来了新的挑战。网络上的信息呈爆炸式地增长，在网络研究领域没有经验的用户数量也是与日俱增。人们喜欢使用链接起来的一个个网站（<em>link graph</em>）来进行网上冲浪，通常从一些比较好的由人工维护的索引或者搜索引擎（如<a target="_blank" rel="noopener" href="https://www.yahoo.com/">Yahoo！</a> ）开始。人工维护的网站列表清单能够很好的覆盖一些流行的主题，但是从另一方面来说其选定的内容也很主观，且很难构建和维护，想要改善速度也很慢，并且不能覆盖全部的（包括一些圈内人[esoteric]的）主题。使用关键字匹配的自动化搜索引擎的搜索结果的相关程度又不能让人满意。更糟糕的是，一些广告商为了吸引用户的注意，常常采取一些措施来误导自动化的搜索引擎。我们构建的大型搜索引擎解决了现存系统的这些问题。它充分利用了超文本文档结构的附加信息，以此来提供更加高质量的搜索结果。我们将系统命名为<strong>Google</strong>，因为它是一个天文数字，即10<sup>100</sup>的另一种写法，与我们构建<strong>大规模搜索引擎</strong>的想法一致。</p>
+<h3 id="1-1-网络搜索引擎-–-规模增长：1994-2000"><a href="#1-1-网络搜索引擎-–-规模增长：1994-2000" class="headerlink" title="1.1 网络搜索引擎 – 规模增长：1994-2000"></a>1.1 网络搜索引擎 – 规模增长：1994-2000</h3><p>搜索引擎技术不得不随着网络规模的增长而出现引人注目的增长。1994年，世界上最早的搜索引擎之一，World Wide Web Worm【参考<a target="_blank" rel="noopener" href="http://info.cern.ch/">WWW</a> 】，拥有110,000网络上可访问的文档和网页的索引。到了1997年的十一月，顶级的搜索引擎声称能够索引200万（WebCrawler）到1亿（Search Engine Watch）个网络文件不等。可以预见到2000年，互联网上一个复杂（搜索引擎）的索引将会包含超过10亿个文件。</p>
+<h3 id="1-2-Google：随着网络的增长而增长"><a href="#1-2-Google：随着网络的增长而增长" class="headerlink" title="1.2 Google：随着网络的增长而增长"></a>1.2 Google：随着网络的增长而增长</h3><h3 id="1-3-设计目标"><a href="#1-3-设计目标" class="headerlink" title="1.3 设计目标"></a>1.3 设计目标</h3><h4 id="1-3-1-改善搜索质量"><a href="#1-3-1-改善搜索质量" class="headerlink" title="1.3.1 改善搜索质量"></a>1.3.1 改善搜索质量</h4><p>我们的主要目标是改善WEB搜索引擎的质量。在1994年，一些人认为通过一个完整的搜索索引可以很容易地找到任何东西。由The Best of the Web 1994–Navigators，<em>“最好的导航器应该可以让人们轻松地找到任何东西（一旦所有的数据都被放到了互联网上）”</em>（那时候搜索引擎的主要作用就是<strong>导航器navigator</strong>，即通过搜索引擎搜索到其他网站）。然而到了1997年，互联网有了很大的不同。任何用过搜索引擎的人都知道，决定搜索质量的因素不只是搜索结果的完整性了。<strong>Junk Results</strong>可能把所有用户感兴趣的结果都冲掉了。事实上，到1997年11月时，最好的四个商用搜索引擎中只有一个可以搜索到它自己（在搜索框中搜索自己的品牌名，如在百度一下百度，Google一下Google，取前十条结果）。造成这个现象的主要原因是，索引中文件的数量呈几何级数增加，但是用户看文件的能力没有增长。人们还是只会看前几条（页）。</p>
+<p>因此，随着数量级的增长，我们需要一个拥有很高准确性的工具（<strong>返回高相关性的结果</strong>，比如前几十条）。事实上，我们希望只搜索到最相关的结果，因为与之有一点关系的结果可能有上万条。精确性是很重要的即使重复寻找系统中的所有文件。最近的一些研究表明更加<strong>hypertextual（超文本结构化）</strong>的信息有助于改善搜索结果。尤其引人注目的是，<strong>链接结构</strong>和<strong>链接文本</strong>为相关性判断和过滤掉不好的结果方面提供了有用的信息。Google同时使用了链接结构和锚（anchor）文本。 </p>
+<h4 id="1-3-2-学术上搜索引擎的研究"><a href="#1-3-2-学术上搜索引擎的研究" class="headerlink" title="1.3.2 学术上搜索引擎的研究"></a>1.3.2 学术上搜索引擎的研究</h4><p>Web（互联网）除了在数量上有巨大的增长之外，也变得越来越商业化。1993年有1.5%的网络服务器是.com域名，到了1997年就变成了60%。搜索引擎也逐渐从学术研究走向商业化。现在许多公司在开发搜索引擎，并很少透露技术细节。这使得搜索引擎技术变成了一个黑科技，并只是为了打广告用的。通过Google，我们希望在（搜索引擎）这个学术领域上能够得到更过认识和发展。</p>
+<p>另一个重要的设计目标就是希望设计一个大多数人能够使用的系统。之所以要实现“大多数人能使用”，是因为多数有意思的研究需要用到现代网络上的大量数据。比如每天</p>
+<h2 id="2-系统特性"><a href="#2-系统特性" class="headerlink" title="2. 系统特性"></a>2. 系统特性</h2><h3 id="2-1-网页排名：给网络世界带来秩序"><a href="#2-1-网页排名：给网络世界带来秩序" class="headerlink" title="2.1 网页排名：给网络世界带来秩序"></a>2.1 网页排名：给网络世界带来秩序</h3><h4 id="2-1-1-网页排名算法描述"><a href="#2-1-1-网页排名算法描述" class="headerlink" title="2.1.1 网页排名算法描述"></a>2.1.1 网页排名算法描述</h4><h4 id="2-1-2-直观的论证"><a href="#2-1-2-直观的论证" class="headerlink" title="2.1.2 直观的论证"></a>2.1.2 直观的论证</h4><h3 id="2-2-定位文本"><a href="#2-2-定位文本" class="headerlink" title="2.2 定位文本"></a>2.2 定位文本</h3><h3 id="2-3-其它特性"><a href="#2-3-其它特性" class="headerlink" title="2.3 其它特性"></a>2.3 其它特性</h3><h2 id="3-相关工作"><a href="#3-相关工作" class="headerlink" title="3. 相关工作"></a>3. 相关工作</h2><h3 id="3-1-信息检索"><a href="#3-1-信息检索" class="headerlink" title="3.1 信息检索"></a>3.1 信息检索</h3><h3 id="3-2-网络和良好组织结构集合的区别"><a href="#3-2-网络和良好组织结构集合的区别" class="headerlink" title="3.2 网络和良好组织结构集合的区别"></a>3.2 网络和良好组织结构集合的区别</h3><h2 id="4-系统详细分析"><a href="#4-系统详细分析" class="headerlink" title="4. 系统详细分析"></a>4. 系统详细分析</h2><p>首先，我们对架构做一个高层次的讨论。其次，对一些重要的数据结构做一些深度的描述。最后，主要的应用：<strong>爬取、索引、搜索</strong>数据的性能将会被测试。</p>
+<h3 id="4-1-Google架构概览"><a href="#4-1-Google架构概览" class="headerlink" title="4.1 Google架构概览"></a>4.1 Google架构概览</h3><p>本节，我们将对整个系统的工作流程做一个概要性的描述。接下来的几节我们会讨论具体的应用和数据结构。Google搜索引擎主要是用C/C++实现的（处于效率考虑），可以运行在Linux或Solaris上。</p>
+<p>Google搜索引擎的网页爬取工作由多个分布式的爬虫完成。有一个包含需要被爬取的URL列表的<strong>URL server</strong>，被爬取的网页之后被送到存储服务器上。存储服务器把网页压缩并存储到仓库（repository）中。每一个网页都有一个相关联的ID（<strong>docID</strong>），每当网页中解析出一个新的URL时被赋值。索引函数被<strong>索引器（indexer）</strong>和<strong>分类器（sorter）</strong>执行。索引器执行一系列函数，包括读取repository，解压文件，解析文件内容。每个文件被转换成一个被称作<strong>hits</strong>的数据结构，根据不同单词的出现频率  。<strong>hits</strong>记录了单词、在文件中出现的位置、字体大小（字母个数？）的估计值、大小写。索引器把这些hits分成一系列<strong>barrels</strong>，产生一个部分分类的前序索引。索引器接着执行另一个功能。它将每个网页中所有的链接解析出来，在<strong>anchor files（锚文件）</strong>中存储关于它们的重要信息。这些文件包含了足够的信息来确定这些链接的走向（from-&gt;to）以及链接文字。</p>
+<p><strong>URL解析器</strong>读取<strong>anchor files</strong>，把相对URL转换成绝对URL，进而转换成<strong>docID</strong>。它将锚文本放入前序索引，以及与之相关的<strong>docID</strong>（anchor指向的文件）。它同时产生一个链接数据库，存储了成对的docID。这个链接数据库用来为所有文件计算<strong>PageRank</strong>。</p>
+<h3 id="4-2-主要的数据结构"><a href="#4-2-主要的数据结构" class="headerlink" title="4.2 主要的数据结构"></a>4.2 主要的数据结构</h3><h4 id="4-2-1-大文件"><a href="#4-2-1-大文件" class="headerlink" title="4.2.1 大文件"></a>4.2.1 大文件</h4><h4 id="4-2-2-仓库"><a href="#4-2-2-仓库" class="headerlink" title="4.2.2 仓库"></a>4.2.2 仓库</h4><h4 id="4-2-3-文件索引"><a href="#4-2-3-文件索引" class="headerlink" title="4.2.3 文件索引"></a>4.2.3 文件索引</h4><h4 id="4-2-4-专门词汇-lexicon"><a href="#4-2-4-专门词汇-lexicon" class="headerlink" title="4.2.4 专门词汇[lexicon]"></a>4.2.4 专门词汇[<em>lexicon</em>]</h4><h4 id="4-2-5-点击次数列表"><a href="#4-2-5-点击次数列表" class="headerlink" title="4.2.5 点击次数列表"></a>4.2.5 点击次数列表</h4><h4 id="4-2-6-前向索引"><a href="#4-2-6-前向索引" class="headerlink" title="4.2.6 前向索引"></a>4.2.6 前向索引</h4><h4 id="4-2-7-反向索引"><a href="#4-2-7-反向索引" class="headerlink" title="4.2.7 反向索引"></a>4.2.7 反向索引</h4><h3 id="4-3-爬取网络数据"><a href="#4-3-爬取网络数据" class="headerlink" title="4.3 爬取网络数据"></a>4.3 爬取网络数据</h3><h3 id="4-4-为网页建立索引"><a href="#4-4-为网页建立索引" class="headerlink" title="4.4 为网页建立索引"></a>4.4 为网页建立索引</h3><h3 id="4-5-搜索"><a href="#4-5-搜索" class="headerlink" title="4.5 搜索"></a>4.5 搜索</h3><h4 id="4-5-1-排名系统"><a href="#4-5-1-排名系统" class="headerlink" title="4.5.1 排名系统"></a>4.5.1 排名系统</h4><h4 id="4-5-2-反馈"><a href="#4-5-2-反馈" class="headerlink" title="4.5.2 反馈"></a>4.5.2 反馈</h4><h2 id="5-结果和性能分析"><a href="#5-结果和性能分析" class="headerlink" title="5. 结果和性能分析"></a>5. 结果和性能分析</h2><h3 id="5-1-存储需求"><a href="#5-1-存储需求" class="headerlink" title="5.1 存储需求"></a>5.1 存储需求</h3><h3 id="5-2-系统性能分析"><a href="#5-2-系统性能分析" class="headerlink" title="5.2 系统性能分析"></a>5.2 系统性能分析</h3><h3 id="5-3-搜索性能分析"><a href="#5-3-搜索性能分析" class="headerlink" title="5.3 搜索性能分析"></a>5.3 搜索性能分析</h3><h2 id="6-结论"><a href="#6-结论" class="headerlink" title="6. 结论"></a>6. 结论</h2><h3 id="6-1-未来的工作"><a href="#6-1-未来的工作" class="headerlink" title="6.1 未来的工作"></a>6.1 未来的工作</h3><h3 id="6-2-高质量的搜索结果"><a href="#6-2-高质量的搜索结果" class="headerlink" title="6.2 高质量的搜索结果"></a>6.2 高质量的搜索结果</h3><h3 id="6-3-可扩展的系统架构"><a href="#6-3-可扩展的系统架构" class="headerlink" title="6.3 可扩展的系统架构"></a>6.3 可扩展的系统架构</h3><h3 id="6-4-用来研究的工具"><a href="#6-4-用来研究的工具" class="headerlink" title="6.4 用来研究的工具"></a>6.4 用来研究的工具</h3><h2 id="7-致谢"><a href="#7-致谢" class="headerlink" title="7. 致谢"></a>7. 致谢</h2><h2 id="8-附录A：广告和其它"><a href="#8-附录A：广告和其它" class="headerlink" title="8. 附录A：广告和其它"></a>8. 附录A：广告和其它</h2><h2 id="9-附录B：可扩展性"><a href="#9-附录B：可扩展性" class="headerlink" title="9. 附录B：可扩展性"></a>9. 附录B：可扩展性</h2><h3 id="9-1-Google的可扩展性"><a href="#9-1-Google的可扩展性" class="headerlink" title="9.1 Google的可扩展性"></a>9.1 Google的可扩展性</h3><h3 id="9-2-集中式索引结构的可扩展性"><a href="#9-2-集中式索引结构的可扩展性" class="headerlink" title="9.2 集中式索引结构的可扩展性"></a>9.2 集中式索引结构的可扩展性</h3>
+
+  </article>
+  </script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+  <div class="busuanzi center">
+    页阅读量:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    站访问量:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    站访客数:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © OLIV 2018-2021
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="http://nonchaos.space">
+        Hello, Goodbye
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+<script src="/js/search.min.js"></script>
+<script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+$(".dropdown").click(function(event) {
+  var current = $(this);
+  event.stopPropagation();
+  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
+});
+$(document).click(function(){
+    $(".dropdown-content").removeClass("open");
+})
+
+var path = "/search.xml";
+searchFunc(path, 'local-search-input', 'local-search-result');
+
+</script>
+
+</body>
+</html>
